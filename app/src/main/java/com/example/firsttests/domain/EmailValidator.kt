@@ -2,7 +2,6 @@ package com.example.firsttests.domain
 
 import android.text.Editable
 import android.text.TextWatcher
-
 import java.util.regex.Pattern
 
 class EmailValidator : TextWatcher {

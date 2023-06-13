@@ -40,6 +40,41 @@ class EmailValidatorTest {
     }
 
     @Test
+    fun emailValidator_InvalidEmailNoDomain_ReturnsFalse() {
+        assertFalse(emailValidator.isValidEmail("name@"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailRusChar_ReturnsFalse() {
+        assertFalse(emailValidator.isValidEmail("Anтon-Tchaikovsky@yandex.by"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailEqualsChar_ReturnsFalse() {
+        assertFalse(emailValidator.isValidEmail("Anton=Tchaikovsky@yandex.by"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailApostropheChar_ReturnsFalse() {
+        assertFalse(emailValidator.isValidEmail("D'Anton-Tchaikovsky@yandex.by"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailSpaceChar_ReturnsFalse() {
+        assertFalse(emailValidator.isValidEmail("Anton Tchaikovsky@yandex.by"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailDoubleAtChar_ReturnsFalse() {
+        assertFalse(emailValidator.isValidEmail("Anton-Tchaikovsky@@yandex.by"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailTooLongDomain_ReturnsFalse() {
+        assertFalse(emailValidator.isValidEmail("Anton-Tchaikovsky@yandex.byyyyyyyyyyyyyyyyyyyyyyyyyy"))
+    }
+
+    @Test
     fun emailValidator_EmptyString_ReturnsFalse() {
         assertFalse(emailValidator.isValidEmail(""))
     }
@@ -47,6 +82,11 @@ class EmailValidatorTest {
     @Test
     fun emailValidator_NullEmail_ReturnsFalse() {
         assertFalse(emailValidator.isValidEmail(null))
+    }
+
+    @Test
+    fun emailValidator_NullEmail_ReturnsNotNull() {
+        assertNotNull(emailValidator.isValidEmail(null))
     }
 
 }
